@@ -1,7 +1,7 @@
 <?php
 // config.php
 $host    = '127.0.0.1';        // or 'localhost'
-$db      = 'FoodDelApp';
+$db      = 'fooddel';
 $user    = 'root';             // or your MySQL user
 $pass    = 'Bahubali1234#';                 
 $charset = 'utf8mb4';

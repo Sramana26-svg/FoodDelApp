@@ -2,5 +2,15 @@ services:
   - type: web
     name: fooddelapp
     env: docker
-    plan: free
-    region: dallas
+    region: oregon  # or use your preferred region
+    plan: free  # or standard if you prefer
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DB_HOST
+        value:127.0.0.1
+      - key: DB_USER
+        value: root
+      - key: DB_PASSWORD
+        value: Bahubali1234#
+      - key: DB_NAME
+        value: fooddel
