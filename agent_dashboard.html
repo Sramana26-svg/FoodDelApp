@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Agent Dashboard</title></head>
+<body>
+<h2>Your Assigned Deliveries</h2>
+<div id="deliveries"></div>
+
+<script>
+const agent_id = 3; // Replace with actual session ID if implemented
+
+fetch(`../api/get_orders_agent.php?agent_id=${agent_id}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('deliveries').innerHTML = data.map(d =>
+      `<p>
+        Order #${d.id} — ${d.status} <br>
+        Restaurant: ${d.restaurant_name} <br>
+        <button onclick="markDelivered(${d.assignment_id})">Mark Delivered</button>
+      </p>`
+    ).join('');
+  });
+
+function markDelivered(id) {
+  fetch(`../api/update_delivery_status.php?assignment_id=${id}`)
+    .then(res => res.json())
+    .then(res => alert(res.message));
+}
+</script>
+</body>
+</html>
