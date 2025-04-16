@@ -1,7 +1,9 @@
 services:
   - type: web
-    name: FoodDelApp
+    name: fooddelapp
     env: php
+    region: dallas
     plan: free
-    buildCommand: ""
-    startCommand: "php -S 0.0.0.0:$PORT -t public/"
+    buildCommand: ""  # No build step needed for plain PHP
+    startCommand: php -S 0.0.0.0:$PORT -t public/
+    rootDir: .  # Root is the same as where render.yaml is
