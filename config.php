@@ -9,9 +9,7 @@ $charset = 'utf8mb4';
 // If you changed the port to 3307, include it here:
 $port    = '3307';             // set to '' if still 3306
 
-$dsn = "mysql:host=$host" 
-     . ($port ? ";port=$port" : "")
-     . ";dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 $options = [
   PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -23,9 +21,8 @@ try {
   $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
   http_response_code(500);
-  exit('DB Connection failed: '.$e->getMessage());
+  echo json_encode(['error' => 'DB Connect Failed: ' . $e->getMessage()]);
+    exit;
 }
 
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
+?>
