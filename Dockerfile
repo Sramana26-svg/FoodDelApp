@@ -12,3 +12,6 @@ RUN a2enmod rewrite
 
 # Expose port 80 for Render
 EXPOSE 80
+
+# Start Apache when container runs
+CMD ["apache2-foreground"]
