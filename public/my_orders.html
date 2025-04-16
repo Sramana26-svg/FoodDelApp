@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Orders</title></head>
+<body>
+<h2>Your Orders</h2>
+<div id="orders"></div>
+
+<script>
+const customer_id = 1;
+
+fetch(`../api/get_orders_customer.php?cid=${customer_id}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('orders').innerHTML = data.map(o =>
+      `<p>Order #${o.id} — $${o.total_amount} — ${o.status}</p>`
+    ).join('');
+  });
+</script>
+</body>
+</html>

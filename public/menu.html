@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>Menu</title></head>
+<body>
+<h2>Menu</h2>
+<div id="menu"></div>
+<a href="cart.html">Go to Cart</a>
+
+<script>
+const rid = new URLSearchParams(location.search).get('rid');
+localStorage.setItem('rid', rid);
+
+fetch(`../api/get_menu.php?rid=${rid}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('menu').innerHTML = data.map(i =>
+      `<p>${i.name} — $${i.price}
+         <button onclick="addToCart(${i.id}, ${i.price}, '${i.name}')">Add</button>
+       </p>`
+    ).join('');
+  });
+
+function addToCart(id, price, name) {
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  cart.push({menu_item_id: id, name, price_each: price, quantity: 1});
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${name} added!`);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Restaurants</title></head>
+<body>
+<h2>Restaurants</h2>
+<div id="restaurants"></div>
+
+<script>
+fetch('../api/get_restaurants.php')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('restaurants').innerHTML = data.map(r =>
+      `<p>
+         <strong>${r.name}</strong><br>${r.address}<br>
+         <button onclick="location.href='menu.html?rid=${r.id}'">View Menu</button>
+       </p>`
+    ).join('');
+  });
+</script>
+</body>
+</html>
