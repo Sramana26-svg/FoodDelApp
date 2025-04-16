@@ -1,9 +1,6 @@
 services:
   - type: web
     name: fooddelapp
-    env: php
-    region: dallas
+    env: docker
     plan: free
-    buildCommand: ""  # No build step needed for plain PHP
-    startCommand: php -S 0.0.0.0:$PORT -t public/
-    rootDir: .  # Root is the same as where render.yaml is
+    region: dallas
